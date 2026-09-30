@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('category'); // chairs, tables, canopies, etc.
-            $table->decimal('price_per_day', 8, 2);
+            $table->decimal('price_per_day', 12, 2);
             $table->integer('quantity_available');
             $table->string('image')->nullable();
             $table->timestamps();
