@@ -3,7 +3,7 @@
 @section('title', 'Richy Events Lagos - Premium Event Rentals')
 
 @section('content')
-<div class="bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-700 dark:from-purple-900 dark:via-pink-900 dark:to-indigo-900 text-white py-24 relative overflow-hidden">
+<div class="bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-700 dark:from-purple-900 dark:via-pink-900 dark:to-indigo-900 text-white py-16 md:py-24 relative overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-20"></div>
     <div class="container mx-auto text-center relative z-10 px-4">
         <p id="hero-eyebrow" class="text-sm md:text-base font-semibold uppercase tracking-widest text-purple-200 mb-4">Richy Events Lagos</p>
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<div id="services" class="container mx-auto py-20 px-4">
-    <h2 class="text-4xl font-bold text-center mb-4 text-gray-800 dark:text-white">Our Premium Services</h2>
-    <p class="text-center text-gray-600 dark:text-gray-300 mb-16 text-lg">Serving Lagos Island with Excellence</p>
+<div id="services" class="container mx-auto py-14 md:py-20 px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 dark:text-white">Our Premium Services</h2>
+    <p class="text-center text-gray-600 dark:text-gray-300 mb-10 md:mb-16 text-lg">Serving Lagos Island with Excellence</p>
 
     @foreach($equipment as $category => $items)
-        <div class="mb-16">
-            <h3 class="text-3xl font-bold mb-8 capitalize text-purple-600 dark:text-purple-400 text-center">{{ $category }}</h3>
+        <div class="mb-12 md:mb-16">
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 capitalize text-purple-600 dark:text-purple-400 text-center">{{ $category }}</h3>
 
             @if(count($items) > 3)
                 <div class="relative group">
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="text-center mt-4"><p class="text-gray-500 text-sm">← Swipe to see more →</p></div>
                 </div>
             @else
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                     @foreach($items as $item)
                         @php $dirs = ['left','up','right']; $dir = $dirs[$loop->index % 3]; @endphp
                         <div class="card-animate bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 group border border-gray-100 dark:border-gray-700" data-dir="{{ $dir }}">
@@ -173,18 +173,18 @@ function scrollCategory(button, direction) {
 }
 </script>
 
-<div id="gallery" class="bg-gray-50 dark:bg-gray-900 py-20">
+<div id="gallery" class="bg-gray-50 dark:bg-gray-900 py-14 md:py-20">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-10">
-            <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-3">Our Work</h2>
+        <div class="text-center mb-8 md:mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">Our Work</h2>
             <p class="text-gray-500 dark:text-gray-400 text-lg">Real events we've supplied across Lagos Island</p>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-2 mb-10">
+        <div class="flex flex-wrap justify-center gap-2 mb-6 md:mb-10">
             @php $galleryFilters = ['All', 'Chairs', 'Tables', 'Canopies', 'Flooring']; @endphp
             @foreach($galleryFilters as $filter)
                 <button onclick="filterSlider('{{ strtolower($filter) }}', this)"
-                    class="gallery-filter px-5 py-2 rounded-full text-sm font-semibold border-2 transition-all duration-200 {{ $filter === 'All' ? 'bg-purple-600 border-purple-600 text-white' : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-purple-400 hover:text-purple-600' }}"
+                    class="gallery-filter px-4 sm:px-5 py-2 rounded-full text-sm font-semibold border-2 transition-all duration-200 {{ $filter === 'All' ? 'bg-purple-600 border-purple-600 text-white' : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-purple-400 hover:text-purple-600' }}"
                     data-filter="{{ strtolower($filter) }}">{{ $filter }}</button>
             @endforeach
         </div>
@@ -226,12 +226,12 @@ function scrollCategory(button, direction) {
                 <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out">
                     @foreach($galleryItems as $i => $photo)
                         <div class="gallery-slide flex-none w-full relative" data-category="{{ $photo['category'] }}">
-                            <div class="aspect-[16/7] bg-gray-200 dark:bg-gray-800">
+                            <div class="aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7] bg-gray-200 dark:bg-gray-800">
                                 <img src="/images/{{ rawurlencode($photo['src']) }}" alt="{{ $photo['label'] }}" class="w-full h-full object-cover" loading="lazy">
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-6 md:p-10">
-                                <span class="inline-block bg-purple-600/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full capitalize mb-3 w-fit">{{ $photo['category'] }}</span>
-                                <p class="text-white font-bold text-xl md:text-3xl leading-tight">{{ $photo['label'] }}</p>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-10">
+                                <span class="inline-block bg-purple-600/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full capitalize mb-2 sm:mb-3 w-fit">{{ $photo['category'] }}</span>
+                                <p class="text-white font-bold text-lg sm:text-xl md:text-3xl leading-tight">{{ $photo['label'] }}</p>
                                 <p class="text-purple-200 text-sm mt-1 flex items-center gap-1">
                                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                                     {{ $photo['location'] }}
@@ -242,15 +242,16 @@ function scrollCategory(button, direction) {
                 </div>
             </div>
 
-            <button onclick="sliderMove(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-3 transition z-10">
+            <button onclick="sliderMove(-1)" class="absolute left-2 sm:left-3 top-[40%] sm:top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 sm:p-3 transition z-10">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <button onclick="sliderMove(1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-3 transition z-10">
+            <button onclick="sliderMove(1)" class="absolute right-2 sm:right-3 top-[40%] sm:top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 sm:p-3 transition z-10">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </button>
 
-            <div id="gallery-dots" class="flex justify-center gap-2 mt-5"></div>
-            <p class="text-center text-gray-400 dark:text-gray-500 text-sm mt-2">
+            {{-- 27 dots don't fit on a phone; the "1 / 27" counter below covers it there --}}
+            <div id="gallery-dots" class="hidden sm:flex flex-wrap justify-center gap-2 mt-5"></div>
+            <p class="text-center text-gray-400 dark:text-gray-500 text-sm mt-4 sm:mt-2">
                 <span id="slide-current">1</span> / <span id="slide-total">1</span>
             </p>
         </div>
@@ -331,17 +332,17 @@ function scrollCategory(button, direction) {
 })();
 </script>
 
-<div id="quick-quote" class="bg-gray-50 dark:bg-gray-900 py-20">
+<div id="quick-quote" class="bg-gray-50 dark:bg-gray-900 py-14 md:py-20">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Quick Quote Request</h2>
+        <div class="text-center mb-8 md:mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Quick Quote Request</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">3 easy steps to get your instant WhatsApp quote</p>
         </div>
 
                 <div class="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
 
             <!-- Step Header -->
-            <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-6">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 sm:px-8 py-5 sm:py-6">
                 <div class="flex items-center justify-between max-w-sm mx-auto">
                     <div class="flex flex-col items-center">
                         <div id="step-dot-1" class="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-white text-purple-600 shadow transition-all duration-300">1</div>
@@ -366,22 +367,22 @@ function scrollCategory(button, direction) {
 
             <form id="quote-form">
                 <!-- STEP 1: Select Equipment -->
-                <div id="quote-step-1" class="quote-step p-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Select Equipment</h3>
+                <div id="quote-step-1" class="quote-step p-4 sm:p-8">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Select Equipment</h3>
                         <button type="button" onclick="loadCartToForm()" class="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 hover:bg-purple-200 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-lg font-semibold text-sm transition">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                             Load from Cart
                         </button>
                     </div>
-                    <div class="grid grid-cols-2 lg:grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         @foreach($equipment as $category => $items)
-                            <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border border-gray-200 dark:border-gray-600">
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-3 sm:p-5 border border-gray-200 dark:border-gray-600">
                                 <h4 class="text-xl font-bold mb-4 capitalize text-purple-600 dark:text-purple-400">{{ $category }}</h4>
                                 @foreach($items as $item)
-                                    <div class="flex items-center mb-3 p-3 rounded-lg hover:bg-white dark:hover:bg-gray-600 transition-all">
-                                        <input type="checkbox" class="w-5 h-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500" data-name="{{ $item->name }}" data-price="{{ $item->price_per_day }}" onchange="toggleQuantity(this)">
-                                        <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center ml-3 mr-3">
+                                    <div class="flex items-center mb-2 sm:mb-3 p-2 sm:p-3 rounded-lg hover:bg-white dark:hover:bg-gray-600 transition-all">
+                                        <input type="checkbox" class="w-5 h-5 shrink-0 text-purple-600 rounded border-gray-300 focus:ring-purple-500" data-name="{{ $item->name }}" data-price="{{ $item->price_per_day }}" onchange="toggleQuantity(this)">
+                                        <div class="w-10 h-10 shrink-0 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-2 sm:mx-3">
                                             @php
                                                 $itemName = strtolower($item->name);
                                                 if (str_contains($itemName, 'chair')) {
@@ -400,18 +401,18 @@ function scrollCategory(button, direction) {
                                             @endphp
                                             <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">{!! $icon !!}</svg>
                                         </div>
-                                        <div class="flex-1">
+                                        <div class="flex-1 min-w-0 pr-2">
                                             <div class="font-semibold text-gray-800 dark:text-white text-sm">{{ $item->name }}</div>
                                             <div class="text-purple-600 dark:text-purple-400 font-bold text-sm">₦{{ number_format($item->price_per_day, 0) }}<span class="text-xs text-gray-500 dark:text-gray-400">/day</span></div>
                                         </div>
-                                        <input type="number" min="1" value="1" class="w-16 p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-center text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-400" oninput="updatePreview()" disabled data-qty>
+                                        <input type="number" min="1" value="1" class="w-16 shrink-0 p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-center text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-400" oninput="updatePreview()" disabled data-qty>
                                     </div>
                                 @endforeach
                             </div>
                         @endforeach
                     </div>
-                    <div class="flex justify-end mt-8">
-                        <button type="button" onclick="goToStep(2)" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition shadow-lg flex items-center gap-2">
+                    <div class="flex flex-col sm:flex-row sm:justify-end mt-8">
+                        <button type="button" onclick="goToStep(2)" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition shadow-lg flex items-center justify-center gap-2">
                             Next: Add Extras
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </button>
@@ -419,16 +420,16 @@ function scrollCategory(button, direction) {
                 </div>
 
                 <!-- STEP 2: Additional Items -->
-                <div id="quote-step-2" class="quote-step p-8 hidden">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Additional Items</h3>
+                <div id="quote-step-2" class="quote-step p-4 sm:p-8 hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-6">Additional Items</h3>
                     <div class="flex flex-col lg:flex-row gap-6">
                     <div class="flex-1">
-                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-3 sm:p-5 border border-gray-200 dark:border-gray-600">
                         <div id="custom-items">
-                            <div class="flex gap-3">
-                                <input type="text" placeholder="Item name" class="flex-1 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                                <input type="number" placeholder="Qty" min="1" class="w-20 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg text-center focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                                <button type="button" onclick="addCustomItem()" class="bg-green-600 hover:bg-green-700 text-white px-4 rounded-lg transition">
+                            <div class="flex gap-2 sm:gap-3">
+                                <input type="text" placeholder="Item name" class="flex-1 min-w-0 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                                <input type="number" placeholder="Qty" min="1" class="w-16 sm:w-20 shrink-0 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg text-center focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                                <button type="button" onclick="addCustomItem()" class="shrink-0 bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 rounded-lg transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                                 </button>
                             </div>
@@ -449,12 +450,12 @@ function scrollCategory(button, direction) {
                         </div>
                     </div>
                     </div><!-- end flex row -->
-                    <div class="flex justify-between mt-8">
-                        <button type="button" onclick="goToStep(1)" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                    <div class="flex flex-col-reverse sm:flex-row sm:justify-between gap-3 mt-8">
+                        <button type="button" onclick="goToStep(1)" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                             Back
                         </button>
-                        <button type="button" onclick="goToStep(3)" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition shadow-lg flex items-center gap-2">
+                        <button type="button" onclick="goToStep(3)" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition shadow-lg flex items-center justify-center gap-2">
                             Next: Your Details
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </button>
@@ -462,11 +463,11 @@ function scrollCategory(button, direction) {
                 </div>
 
                 <!-- STEP 3: Your Details -->
-                <div id="quote-step-3" class="quote-step p-8 hidden">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Your Details</h3>
+                <div id="quote-step-3" class="quote-step p-4 sm:p-8 hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-6">Your Details</h3>
                     <div class="flex flex-col lg:flex-row gap-6">
                     <div class="flex-1">
-                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-3 sm:p-5 border border-gray-200 dark:border-gray-600">
                         <div class="grid md:grid-cols-2 gap-4">
                             <input type="text" id="customer-name" placeholder="Your Full Name" required class="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
                             <input type="tel" id="customer-phone" placeholder="Phone Number" class="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
@@ -495,12 +496,12 @@ function scrollCategory(button, direction) {
                         </div>
                     </div>
                     </div><!-- end flex row -->
-                    <div class="flex justify-between mt-8">
-                        <button type="button" onclick="goToStep(2)" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                    <div class="flex flex-col-reverse sm:flex-row sm:justify-between gap-3 mt-8">
+                        <button type="button" onclick="goToStep(2)" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                             Back
                         </button>
-                        <button type="button" onclick="sendToWhatsApp()" class="inline-flex items-center gap-2 px-8 py-3 text-lg font-bold text-white bg-green-600 hover:bg-green-700 rounded-xl transition shadow-lg">
+                        <button type="button" onclick="sendToWhatsApp()" class="inline-flex items-center justify-center gap-2 px-8 py-3 text-lg font-bold text-white bg-green-600 hover:bg-green-700 rounded-xl transition shadow-lg">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
                             Send to WhatsApp
                         </button>
@@ -581,7 +582,7 @@ function addCustomItem() {
     if (itemName) {
         const customDiv = document.createElement('div');
         customDiv.className = 'flex items-center gap-3 mb-2 p-2 bg-gray-100 dark:bg-gray-600 rounded-lg';
-        customDiv.innerHTML = `<span class="flex-1 text-gray-800 dark:text-white">${itemName} (Qty: ${quantity})</span>
+        customDiv.innerHTML = `<span class="flex-1 min-w-0 break-words text-gray-800 dark:text-white">${itemName} (Qty: ${quantity})</span>
             <input type="hidden" name="custom[]" value="${itemName}|${quantity}">
             <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -640,24 +641,25 @@ function sendToWhatsApp() {
     if (total > 0) message += `💰 *Estimated Total:* ₦${totalCost.toLocaleString()} (${eventDays} day(s))\n\n`;
     message += `Please prepare detailed invoice with availability confirmation. Thank you! 🙏`;
 
-    window.open(`https://wa.me/2348106812381?text=${encodeURIComponent(message)}`, '_blank');
+    // Not wa.me: its redirect turns emoji like 🎉 into "�"
+    window.open(`https://api.whatsapp.com/send?phone=2348106812381&text=${encodeURIComponent(message)}`, '_blank');
 }
 </script>
 
 <!-- Floating Cart Widget -->
-<div id="quote-widget" class="fixed bottom-24 right-6 z-40">
-    <button onclick="toggleQuoteCart()" class="relative bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full p-4 shadow-2xl hover:scale-110 transition-all duration-300">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+<div id="quote-widget" class="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-40">
+    <button onclick="toggleQuoteCart()" class="relative bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full p-3 sm:p-4 shadow-2xl hover:scale-110 transition-all duration-300">
+        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
         <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center hidden animate-bounce">0</span>
     </button>
-    <div id="quote-cart" class="hidden absolute bottom-20 right-0 w-96 max-h-[600px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-700">
+    <div id="quote-cart" class="hidden absolute bottom-16 sm:bottom-20 right-0 w-[calc(100vw-2rem)] max-w-sm max-h-[75vh] sm:max-h-[600px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-700">
         <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 flex justify-between items-center">
             <h3 class="text-xl font-bold">Quick Quote</h3>
             <button onclick="toggleQuoteCart()" class="hover:bg-white/20 rounded-full p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
-        <div id="cart-items" class="p-4 max-h-80 overflow-y-auto">
+        <div id="cart-items" class="p-4 max-h-[35vh] sm:max-h-80 overflow-y-auto">
             <p class="text-gray-500 dark:text-gray-400 text-center py-8">No items added yet</p>
         </div>
         <div class="border-t border-gray-200 dark:border-gray-700 p-4">
@@ -739,12 +741,13 @@ function sendQuoteToWhatsApp() {
         message += `• ${item.name} x${item.quantity} - ₦${item.price.toLocaleString()}/day = ₦${itemTotal.toLocaleString()}/day\n`;
     });
     message += `\n💰 *Daily Total:* ₦${total.toLocaleString()}\n\nPlease provide availability and final quote. Thank you! 🙏`;
-    window.open(`https://wa.me/2348106812381?text=${encodeURIComponent(message)}`, '_blank');
+    // Not wa.me: its redirect turns emoji like 🎉 into "�"
+    window.open(`https://api.whatsapp.com/send?phone=2348106812381&text=${encodeURIComponent(message)}`, '_blank');
 }
 
 function showNotification(text) {
     const n = document.createElement('div');
-    n.className = 'fixed top-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+    n.className = 'fixed top-4 left-4 right-4 sm:left-auto sm:top-6 sm:right-6 bg-green-500 text-white text-center sm:text-left px-6 py-3 rounded-lg shadow-lg z-50';
     n.textContent = text; document.body.appendChild(n);
     setTimeout(() => { n.style.opacity='0'; n.style.transition='opacity 0.3s'; setTimeout(()=>n.remove(),300); }, 2000);
 }
@@ -767,25 +770,25 @@ function loadCartToForm() {
 document.addEventListener('DOMContentLoaded', updateCartUI);
 </script>
 
-<div id="about" class="py-20 bg-white dark:bg-gray-900">
+<div id="about" class="py-14 md:py-20 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">Why Choose Richy Events Lagos?</h2>
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-gray-800 dark:text-white">Why Choose Richy Events Lagos?</h2>
+        <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
                 <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Premium Quality</h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Top-tier equipment maintained to perfection for your special moments</p>
             </div>
-            <div class="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+            <div class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
                 <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Lagos Island Coverage</h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Serving Victoria Island, Ikoyi, Lekki, and all of Lagos Island</p>
             </div>
-            <div class="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+            <div class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
                 <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
@@ -793,8 +796,8 @@ document.addEventListener('DOMContentLoaded', updateCartUI);
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Quick setup, timely delivery, and professional service every time</p>
             </div>
         </div>
-        <div class="mt-16">
-            <a href="https://wa.me/2348106812381?text=Hello%20Richy%20Events!%20I'd%20like%20to%20discuss%20my%20event%20requirements" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-12 py-4 rounded-full font-bold text-xl hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl">
+        <div class="mt-10 md:mt-16">
+            <a href="https://wa.me/2348106812381?text=Hello%20Richy%20Events!%20I'd%20like%20to%20discuss%20my%20event%20requirements" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 md:px-12 py-4 rounded-full font-bold text-lg md:text-xl hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl">
                 Chat with Us on WhatsApp
             </a>
         </div>
