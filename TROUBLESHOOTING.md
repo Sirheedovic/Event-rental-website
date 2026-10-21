@@ -79,7 +79,7 @@ updateCartUI();
 
 **Solutions**:
 1. Check if special characters are properly encoded
-2. Verify WhatsApp number is correct (2348106812381)
+2. Verify WhatsApp number is correct (2348086008207)
 3. Test with fewer items first
 4. Check if emojis are supported
 

@@ -642,7 +642,7 @@ function sendToWhatsApp() {
     message += `Please prepare detailed invoice with availability confirmation. Thank you! 🙏`;
 
     // Not wa.me: its redirect turns emoji like 🎉 into "�"
-    window.open(`https://api.whatsapp.com/send?phone=2348106812381&text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`, '_blank');
 }
 </script>
 
@@ -742,7 +742,7 @@ function sendQuoteToWhatsApp() {
     });
     message += `\n💰 *Daily Total:* ₦${total.toLocaleString()}\n\nPlease provide availability and final quote. Thank you! 🙏`;
     // Not wa.me: its redirect turns emoji like 🎉 into "�"
-    window.open(`https://api.whatsapp.com/send?phone=2348106812381&text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`, '_blank');
 }
 
 function showNotification(text) {
@@ -797,7 +797,7 @@ document.addEventListener('DOMContentLoaded', updateCartUI);
             </div>
         </div>
         <div class="mt-10 md:mt-16">
-            <a href="https://wa.me/2348106812381?text=Hello%20Richy%20Events!%20I'd%20like%20to%20discuss%20my%20event%20requirements" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 md:px-12 py-4 rounded-full font-bold text-lg md:text-xl hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl">
+            <a href="https://wa.me/{{ config('business.whatsapp_number') }}?text=Hello%20Richy%20Events!%20I'd%20like%20to%20discuss%20my%20event%20requirements" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 md:px-12 py-4 rounded-full font-bold text-lg md:text-xl hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl">
                 Chat with Us on WhatsApp
             </a>
         </div>

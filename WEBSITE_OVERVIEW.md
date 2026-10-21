@@ -283,7 +283,7 @@ The website works on:
 
 ## 10. Contact Integration
 
-The website connects directly to WhatsApp number: **+234 810 681 2381**
+The website connects directly to WhatsApp number: **+234 808 600 8207**
 
 WhatsApp is used in three places:
 1. The green button in the navigation bar
