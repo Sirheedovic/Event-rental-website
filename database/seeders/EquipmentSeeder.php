@@ -233,6 +233,10 @@ class EquipmentSeeder extends Seeder
             ],
         ];
 
+        // Replace the list rather than adding to it, so re-running doesn't create duplicates.
+        // delete() (not truncate) so MySQL refuses if any rentals still reference an item.
+        Equipment::query()->delete();
+
         foreach ($equipment as $item) {
             Equipment::create($item);
         }
